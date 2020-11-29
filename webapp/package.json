@@ -8,10 +8,10 @@
       }
   },
   "lint-staged": {
-      "*.{js,jsx}": [
-          "npm run lint:fix",
-          "git add"
-      ]
+    "src/**/*.{js,jsx,ts,tsx,json,css}": [
+        "npm run lint:fix",
+        "git add"
+    ]
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
