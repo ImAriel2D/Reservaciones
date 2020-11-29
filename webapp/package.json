@@ -8,7 +8,7 @@
       }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css}": [
+    "*.js": [
         "npm run lint:fix",
         "git add"
     ]
