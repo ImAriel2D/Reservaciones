@@ -1,31 +1,55 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 const reservationSchema = new mongoose.Schema({
-  type: {
-    type: String,
+  entryDate: {
+    type: Date,
     required: true,
   },
-  email: {
-    type: String,
+  leavingDate: {
+    type: Date,
     required: true,
-    validate(data) {
-      if (!validator.isEmail(data)) {
-        throw new Error('Not a valid email!');
-      }
+  },
+  rooms: {
+    type: {
+      simple: {
+        type: Number,
+        required: true,
+      },
+      double: {
+        type: Number,
+        required: true,
+      },
+      master: {
+        type: Number,
+        required: true,
+      },
+      suite: {
+        type: Number,
+        required: true,
+      },
     },
-  },
-  paid: {
-    type: Boolean,
     required: true,
   },
   total: {
     type: Number,
     required: true,
   },
-  totalRemaining: {
+  serviceTotal: {
+    type: Number,
+    default: 0,
+  },
+  totalPending: {
     type: Number,
     required: true,
+  },
+  paid: {
+    type: Number,
+    required: true,
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User',
   },
 });
 
