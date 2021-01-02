@@ -10,5 +10,8 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 12,
   },
-  rules: { 'linebreak-style': 0 },
+  rules: {
+    'linebreak-style': 0,
+    'no-underscore-dangle': 'off',
+  },
 };
