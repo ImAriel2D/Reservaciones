@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 
+import { checkForEmptyUserProperties, validateEmail } from '../../utils/validateUser';
+
 import UserFormComponent from './UserForm.component';
 
 const UserFormContainer = () => {
@@ -8,15 +10,30 @@ const UserFormContainer = () => {
     name: '',
     paternalSurname: '',
     maternalSurname: '',
-    dateOfBirth: moment(),
+    dateOfBirth: moment().format(),
     age: '',
     email: '',
     phone: '',
   });
 
+  const [errors, setErrors] = useState({
+    name: false,
+    paternalSurname: false,
+    maternalSurname: false,
+    dateOfBirth: false,
+    age: false,
+    email: false,
+    phone: false,
+  });
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    console.log(user.dateOfBirth.format());
+    const { email } = user;
+
+    const emptyPropertiesErrors = checkForEmptyUserProperties(user);
+    const isEmailValid = validateEmail(email);
+
+    setErrors({ ...emptyPropertiesErrors, email: !isEmailValid });
   };
 
   return (
@@ -24,6 +41,7 @@ const UserFormContainer = () => {
       handleSubmitForm={handleSubmitForm}
       user={user}
       setUser={setUser}
+      errors={errors}
     />
   );
 };
