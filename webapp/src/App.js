@@ -1,10 +1,10 @@
 import React from 'react';
 
-import UserFormContainer from './Components/UserForm';
+import RoomsFormContainer from './Components/RoomsForm';
 
 const App = () => (
   <div className="App">
-    <UserFormContainer />
+    <RoomsFormContainer />
   </div>
 );
 

@@ -10,10 +10,16 @@ const ReservationFormContainer = () => {
     suite: 0,
   });
 
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    console.log('pos si funa');
+  };
+
   return (
     <ReservationFormComponent
       rooms={rooms}
       setRooms={setRooms}
+      handleSubmitForm={handleSubmitForm}
     />
   );
 };

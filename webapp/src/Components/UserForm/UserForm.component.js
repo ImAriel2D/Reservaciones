@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import Input from '../Input';
 import DayPicker from '../DayPicker';
-import SubmitButton from '../SubmitButton';
+import SubmitForm from '../SubmitForm';
 
 import './styles/userForm.scss';
 
@@ -14,8 +14,7 @@ const UserFormComponent = ({
   setUser,
   errors,
 }) => (
-  <form id="user-form" onSubmit={handleSubmitForm}>
-    <h1>Información de contacto</h1>
+  <SubmitForm handleSubmit={handleSubmitForm} title="Información de contacto">
     <Input
       placeHolder="Nombre"
       handleSetValue={(e) => setUser({ ...user, name: e.target.value })}
@@ -49,8 +48,7 @@ const UserFormComponent = ({
       value={user.phone}
       error={errors.phone}
     />
-    <SubmitButton placeHolder="Siguiente" />
-  </form>
+  </SubmitForm>
 );
 
 UserFormComponent.propTypes = {
