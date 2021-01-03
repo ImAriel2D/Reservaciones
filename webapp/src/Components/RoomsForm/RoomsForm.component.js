@@ -2,16 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import NumberPicker from '../NumberPicker';
+import SubmitForm from '../SubmitForm';
 
 import './styles/reservationForm.scss';
 
-const ReservationFormComponent = ({ rooms, setRooms }) => (
-  <form id="reservation-form">
-    <h1>Información de la reservación</h1>
-    <span>Fecha de entrada</span>
-    <input type="date" />
-    <span>Fecha de salida</span>
-    <input type="date" />
+const RoomsFormComponent = ({ rooms, setRooms, handleSubmitForm }) => (
+  <SubmitForm handleSubmit={handleSubmitForm} title="Información de los cuartos">
     <NumberPicker
       placeHolder="Cuartos Simples"
       max={20}
@@ -40,10 +36,10 @@ const ReservationFormComponent = ({ rooms, setRooms }) => (
       handleSetValue={(e) => setRooms({ ...rooms, suite: parseInt(e.target.value, 10) })}
       value={rooms.suite}
     />
-  </form>
+  </SubmitForm>
 );
 
-ReservationFormComponent.propTypes = {
+RoomsFormComponent.propTypes = {
   rooms: PropTypes.shape({
     simple: PropTypes.number.isRequired,
     double: PropTypes.number.isRequired,
@@ -51,6 +47,7 @@ ReservationFormComponent.propTypes = {
     suite: PropTypes.number.isRequired,
   }).isRequired,
   setRooms: PropTypes.func.isRequired,
+  handleSubmitForm: PropTypes.func.isRequired,
 };
 
-export default ReservationFormComponent;
+export default RoomsFormComponent;
