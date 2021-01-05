@@ -1,10 +1,10 @@
 import React from 'react';
 
-import RoomsFormContainer from './Components/RoomsForm';
+import ReservationMaker from './Components/ReservationMaker/ReservationMaker';
 
 const App = () => (
   <div className="App">
-    <RoomsFormContainer />
+    <ReservationMaker />
   </div>
 );
 

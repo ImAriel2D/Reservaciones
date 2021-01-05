@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
 import { checkForEmptyUserProperties, validateEmail } from '../../utils/validateUser';
 
 import UserFormComponent from './UserForm.component';
 
-const UserFormContainer = () => {
+const UserFormContainer = ({ showNextForm }) => {
   const [user, setUser] = useState({
     name: '',
     paternalSurname: '',
@@ -34,6 +35,7 @@ const UserFormContainer = () => {
     const isEmailValid = validateEmail(email);
 
     setErrors({ ...emptyPropertiesErrors, email: !isEmailValid });
+    showNextForm();
   };
 
   return (
@@ -44,6 +46,10 @@ const UserFormContainer = () => {
       errors={errors}
     />
   );
+};
+
+UserFormContainer.propTypes = {
+  showNextForm: PropTypes.func.isRequired,
 };
 
 export default UserFormContainer;

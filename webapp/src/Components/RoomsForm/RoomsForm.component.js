@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import NumberPicker from '../NumberPicker';
 import SubmitForm from '../SubmitForm';
 
+import acceptNumbersOnlyFromInput from '../../lib/utils';
+
 import './styles/reservationForm.scss';
 
 const RoomsFormComponent = ({ rooms, setRooms, handleSubmitForm }) => (
@@ -12,28 +14,28 @@ const RoomsFormComponent = ({ rooms, setRooms, handleSubmitForm }) => (
       placeHolder="Cuartos Simples"
       max={20}
       min={0}
-      handleSetValue={(e) => setRooms({ ...rooms, simple: parseInt(e.target.value, 10) })}
+      handleSetValue={(e) => setRooms({ ...rooms, simple: acceptNumbersOnlyFromInput(e) })}
       value={rooms.simple}
     />
     <NumberPicker
       placeHolder="Cuartos Dobles"
       max={20}
       min={0}
-      handleSetValue={(e) => setRooms({ ...rooms, double: parseInt(e.target.value, 10) })}
+      handleSetValue={(e) => setRooms({ ...rooms, double: acceptNumbersOnlyFromInput(e) })}
       value={rooms.double}
     />
     <NumberPicker
       placeHolder="Cuartos Master"
       max={20}
       min={0}
-      handleSetValue={(e) => setRooms({ ...rooms, master: parseInt(e.target.value, 10) })}
+      handleSetValue={(e) => setRooms({ ...rooms, master: acceptNumbersOnlyFromInput(e) })}
       value={rooms.master}
     />
     <NumberPicker
       placeHolder="Cuartos Dobles"
       max={20}
       min={0}
-      handleSetValue={(e) => setRooms({ ...rooms, suite: parseInt(e.target.value, 10) })}
+      handleSetValue={(e) => setRooms({ ...rooms, suite: acceptNumbersOnlyFromInput(e) })}
       value={rooms.suite}
     />
   </SubmitForm>
