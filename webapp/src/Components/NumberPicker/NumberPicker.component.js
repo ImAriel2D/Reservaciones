@@ -11,7 +11,7 @@ const NumberPicker = ({
   max,
 }) => (
   <div className="number-picker-container">
-    <span>{ placeHolder }</span>
+    <span className="title-place-holder">{ placeHolder }</span>
     <input
       type="number"
       value={value}
