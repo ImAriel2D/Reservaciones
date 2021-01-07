@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './styles/input.scss';
+
 const Input = ({
   placeHolder,
   value,
   handleSetValue,
   error,
 }) => (
-  <span>
-    <input placeholder={placeHolder} value={value} onChange={handleSetValue} type="text" />
+  <div className="text-input-container">
+    <input className="text-input" placeholder={placeHolder} value={value} onChange={handleSetValue} type="text" />
     { error && `${placeHolder} no puede estar vacío / Dato que proporcionado no es valido.` }
-  </span>
+  </div>
 );
 
 Input.propTypes = {

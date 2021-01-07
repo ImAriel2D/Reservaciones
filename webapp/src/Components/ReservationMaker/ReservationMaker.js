@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
+import UserFormComponent from '../UserForm';
 import DatesFormContainer from '../DatesForm';
 import RoomsFormContainer from '../RoomsForm';
-import UserFormComponent from '../UserForm';
 
 const ReservationMaker = () => {
   const [index, setIndex] = useState(0);

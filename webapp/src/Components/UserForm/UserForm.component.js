@@ -35,6 +35,7 @@ const UserFormComponent = ({
     />
     <DayPicker
       handleSetDate={(e) => setUser({ ...user, dateOfBirth: moment(e.target.value).format() })}
+      placeHolder="Fecha de nacimiento"
     />
     <Input
       placeHolder="Correo Electrónico"

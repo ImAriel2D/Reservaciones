@@ -9,9 +9,11 @@ const DatesFormComponent = ({ dates, setDates, handleSubmitDates }) => (
   <SubmitForm handleSubmit={handleSubmitDates} title="Eligiendo fechas">
     <DayPicker
       handleSetDate={(e) => setDates({ ...dates, entryDate: moment(e.target.value).format() })}
+      placeHolder="Fecha de llegada"
     />
     <DayPicker
       handleSetDate={(e) => setDates({ ...dates, leavingDate: moment(e.target.value).format() })}
+      placeHolder="Fecha de salida"
     />
   </SubmitForm>
 );

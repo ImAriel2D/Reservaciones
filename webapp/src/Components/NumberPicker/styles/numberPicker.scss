@@ -1,4 +1,31 @@
+@import "../../../styles/fonts";
+
+button {
+  outline: none;
+}
+
 .number-picker-container {
+  margin: 0 auto;
+}
+
+.title-place-holder {
+  font-family: $font-rubik;
+}
+
+.number-container {
+  align-items: center;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+}
+
+.number-of-rooms {
+  font-family: $font-rubik;
+}
+
+.number-button {
+  border: none;
+  border-radius: 15px;
+  height: 2rem;
+  padding: 0.5rem;
+  width: 2rem;
 }

@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 import SubmitButton from '../SubmitButton';
 
+import './styles/submitForm.scss';
+
 const SubmitForm = ({ children, handleSubmit, title }) => (
   <form className="submit-form" onSubmit={handleSubmit}>
-    <h1>{ title }</h1>
+    <h1 id="title">{ title }</h1>
     { children }
     <SubmitButton placeHolder="Siguiente" />
   </form>

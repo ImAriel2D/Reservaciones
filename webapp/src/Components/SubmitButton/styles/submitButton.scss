@@ -1,0 +1,11 @@
+@import "../../../styles/colors";
+@import "../../../styles/fonts";
+
+.submit-button {
+  background-color: $orange;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  height: 3rem;
+  font-family: $font-rubik;
+}

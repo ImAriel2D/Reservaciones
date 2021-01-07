@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './styles/submitButton.scss';
+
 const SubmitButton = ({ placeHolder }) => (
-  <button type="submit">
+  <button className="submit-button" type="submit">
     { placeHolder }
   </button>
 );

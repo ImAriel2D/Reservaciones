@@ -35,6 +35,7 @@ const UserFormContainer = ({ showNextForm }) => {
     const isEmailValid = validateEmail(email);
 
     setErrors({ ...emptyPropertiesErrors, email: !isEmailValid });
+
     showNextForm();
   };
 
