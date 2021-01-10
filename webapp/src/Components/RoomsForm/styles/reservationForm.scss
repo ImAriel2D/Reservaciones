@@ -1,4 +1,18 @@
+@import "../../../styles/colors";
+
 #reservation-form {
   display: flex;
   flex-direction: column;
+}
+
+.number-button {
+  cursor: pointer;
+}
+
+.number-button:hover {
+  background: $orange-hover;
+}
+
+.number-button:active {
+  background: $orange-active;
 }
