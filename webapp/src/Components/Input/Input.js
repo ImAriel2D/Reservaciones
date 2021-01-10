@@ -11,7 +11,14 @@ const Input = ({
 }) => (
   <div className="text-input-container">
     <input className="text-input" placeholder={placeHolder} value={value} onChange={handleSetValue} type="text" />
-    { error && `${placeHolder} no puede estar vacío / Dato que proporcionado no es valido.` }
+    { error
+    && (
+    <p className="error-text">
+      {placeHolder}
+      {' '}
+      no puede estar vacío / Dato que proporcionado no es valido.
+    </p>
+    )}
   </div>
 );
 

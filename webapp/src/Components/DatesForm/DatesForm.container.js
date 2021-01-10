@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import moment from 'moment';
+
+import { increaseIndex } from '../../store/actions/formActions';
 
 import DatesFormComponent from './DatesForm.component';
 
-const DatesFormContainer = ({ showNextForm }) => {
+const DatesFormContainer = () => {
   const [dates, setDates] = useState({
     entryDate: moment().format(),
     leavingDate: moment().format(),
   });
 
+  const dispatch = useDispatch();
+
   const handleSubmitDates = (e) => {
     e.preventDefault();
-    showNextForm();
+    dispatch(increaseIndex());
   };
 
   return (
@@ -22,10 +26,6 @@ const DatesFormContainer = ({ showNextForm }) => {
       handleSubmitDates={handleSubmitDates}
     />
   );
-};
-
-DatesFormContainer.propTypes = {
-  showNextForm: PropTypes.func.isRequired,
 };
 
 export default DatesFormContainer;

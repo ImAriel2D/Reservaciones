@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+
+import { increaseIndex } from '../../store/actions/formActions';
 
 import RoomsFormComponent from './RoomsForm.component';
 
-const RoomsFormContainer = ({ showNextForm }) => {
+const RoomsFormContainer = () => {
   const [rooms, setRooms] = useState({
     simple: 0,
     double: 0,
@@ -11,9 +13,11 @@ const RoomsFormContainer = ({ showNextForm }) => {
     suite: 0,
   });
 
+  const dispatch = useDispatch();
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    showNextForm();
+    dispatch(increaseIndex());
   };
 
   return (
@@ -23,10 +27,6 @@ const RoomsFormContainer = ({ showNextForm }) => {
       handleSubmitForm={handleSubmitForm}
     />
   );
-};
-
-RoomsFormContainer.propTypes = {
-  showNextForm: PropTypes.func.isRequired,
 };
 
 export default RoomsFormContainer;

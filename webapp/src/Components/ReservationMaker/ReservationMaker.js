@@ -1,29 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setNumberOfForms } from '../../store/actions/formActions';
 
 import UserFormComponent from '../UserForm';
 import DatesFormContainer from '../DatesForm';
 import RoomsFormContainer from '../RoomsForm';
 
 const ReservationMaker = () => {
-  const [index, setIndex] = useState(0);
+  const index = useSelector((state) => state.form.get('index'));
+  const dispatch = useDispatch();
 
   const forms = [UserFormComponent, DatesFormContainer, RoomsFormContainer];
   const CurrentForm = forms[index];
 
-  const showNextForm = () => {
-    const areMoreFormsToShow = index < forms.length - 1;
-
-    if (areMoreFormsToShow) {
-      setIndex(index + 1);
-    } else {
-      // TODO: make and show payment form.
-    }
-  };
+  useEffect(() => {
+    dispatch(setNumberOfForms(forms.length));
+  }, []);
 
   return (
-    <CurrentForm
-      showNextForm={showNextForm}
-    />
+    <CurrentForm />
   );
 };
 

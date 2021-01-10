@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
-import { checkForEmptyUserProperties, validateEmail } from '../../utils/validateUser';
+import {
+  checkForEmptyUserProperties,
+  validateEmail,
+  objectHasFalseAttributes,
+} from '../../utils/validateUser';
+
+import { increaseIndex } from '../../store/actions/formActions';
 
 import UserFormComponent from './UserForm.component';
 
-const UserFormContainer = ({ showNextForm }) => {
+const UserFormContainer = () => {
   const [user, setUser] = useState({
     name: '',
     paternalSurname: '',
     maternalSurname: '',
     dateOfBirth: moment().format(),
-    age: '',
     email: '',
     phone: '',
   });
@@ -22,10 +27,11 @@ const UserFormContainer = ({ showNextForm }) => {
     paternalSurname: false,
     maternalSurname: false,
     dateOfBirth: false,
-    age: false,
     email: false,
     phone: false,
   });
+
+  const dispatch = useDispatch();
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -34,9 +40,12 @@ const UserFormContainer = ({ showNextForm }) => {
     const emptyPropertiesErrors = checkForEmptyUserProperties(user);
     const isEmailValid = validateEmail(email);
 
-    setErrors({ ...emptyPropertiesErrors, email: !isEmailValid });
+    const newErrors = { ...emptyPropertiesErrors, email: !isEmailValid };
+    setErrors(newErrors);
 
-    showNextForm();
+    if (!objectHasFalseAttributes(newErrors)) {
+      dispatch(increaseIndex());
+    }
   };
 
   return (
@@ -47,10 +56,6 @@ const UserFormContainer = ({ showNextForm }) => {
       errors={errors}
     />
   );
-};
-
-UserFormContainer.propTypes = {
-  showNextForm: PropTypes.func.isRequired,
 };
 
 export default UserFormContainer;
