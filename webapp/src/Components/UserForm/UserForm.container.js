@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   checkForEmptyUserProperties,
@@ -9,17 +8,20 @@ import {
 } from '../../utils/validateUser';
 
 import { increaseIndex } from '../../store/actions/formActions';
+import setStoredUser from '../../store/actions/userActions';
 
 import UserFormComponent from './UserForm.component';
 
 const UserFormContainer = () => {
+  const storedUser = useSelector((state) => state.user);
+
   const [user, setUser] = useState({
-    name: '',
-    paternalSurname: '',
-    maternalSurname: '',
-    dateOfBirth: moment().format(),
-    email: '',
-    phone: '',
+    name: storedUser.get('name'),
+    paternalSurname: storedUser.get('paternalSurname'),
+    maternalSurname: storedUser.get('maternalSurname'),
+    dateOfBirth: storedUser.get('dateOfBirth'),
+    email: storedUser.get('email'),
+    phone: storedUser.get('phone'),
   });
 
   const [errors, setErrors] = useState({
@@ -45,6 +47,7 @@ const UserFormContainer = () => {
 
     if (!objectHasFalseAttributes(newErrors)) {
       dispatch(increaseIndex());
+      dispatch(setStoredUser(user));
     }
   };
 

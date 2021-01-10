@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { increaseIndex } from '../../store/actions/formActions';
+import setStoredRooms from '../../store/actions/roomsActions';
 
 import RoomsFormComponent from './RoomsForm.component';
 
 const RoomsFormContainer = () => {
+  const storedRooms = useSelector((state) => state.rooms);
+
   const [rooms, setRooms] = useState({
-    simple: 0,
-    double: 0,
-    master: 0,
-    suite: 0,
+    simple: storedRooms.get('simple'),
+    double: storedRooms.get('double'),
+    master: storedRooms.get('master'),
+    suite: storedRooms.get('suite'),
   });
 
   const dispatch = useDispatch();
@@ -18,6 +21,7 @@ const RoomsFormContainer = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     dispatch(increaseIndex());
+    dispatch(setStoredRooms(rooms));
   };
 
   const handleDecreaseSimpleRoom = () => {
