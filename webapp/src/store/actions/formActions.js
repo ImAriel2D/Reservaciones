@@ -3,6 +3,8 @@ import {
   FORM_SET_NUMBER_OF_FORMS,
 } from '../constants';
 
+import createReservation from '../../lib/apiCreateReservation';
+
 export const setIndexAt = (payload) => ({ type: FORM_SET_INDEX_AT, payload });
 export const setNumberOfForms = (payload) => ({ type: FORM_SET_NUMBER_OF_FORMS, payload });
 
@@ -14,6 +16,14 @@ export const increaseIndex = () => (dispatch, getState) => {
 
   if (areThereMoreForms) {
     dispatch(setIndexAt(index + 1));
+  } else {
+    createReservation()
+      .then(() => {
+        // TODO: HANDLE SUCCESS
+      })
+      .catch(() => {
+        // TODO: HANDLE ERROR
+      });
   }
 };
 
