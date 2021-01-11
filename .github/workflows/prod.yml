@@ -25,6 +25,7 @@ jobs:
       - name: docker build webapp
         run: |
           docker build ./webapp -t imariel2d/reservaciones_webapp
-
-
-
+      - name: docker push
+        run: |
+          docker push imariel2d/reservaciones_server
+          docker push imariel2d/reservaciones_webapp
