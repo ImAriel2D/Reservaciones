@@ -15,10 +15,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: docker build server
       run: |
-        docker build ./server reservaciones_server
+        docker build ./server -t imariel2d/reservaciones_server
     - name: docker build webapp
       run: |
-        docker build ./webapp reservaciones_webapp
+        docker build ./webapp -t imariel2d/reservaciones_webapp
 
 
 
