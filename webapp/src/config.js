@@ -3,7 +3,7 @@ const dev = {
 };
 
 const prod = {
-  apiGatewayUrl: 'http:...',
+  apiGatewayUrl: 'https://reservation.app',
 };
 
 let config = dev;
