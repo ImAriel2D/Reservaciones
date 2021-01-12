@@ -8,7 +8,7 @@
     "dev": "nodemon app.js",
     "lint": "eslint --ext .js .",
     "lint:fix": "eslint --fix --ext .js .",
-    "heroku-postbuild": "cd webapp && npm install & npm run build"
+    "heroku-postbuild": "cd webapp && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
