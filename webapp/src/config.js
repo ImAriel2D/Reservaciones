@@ -3,7 +3,7 @@ const dev = {
 };
 
 const prod = {
-  apiGatewayUrl: 'https://reservation.app',
+  apiGatewayUrl: 'https://reservaciones-equipo2.herokuapp.com',
 };
 
 let config = dev;
