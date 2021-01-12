@@ -19,7 +19,7 @@ app.use('/api', reservationRouter);
 if (process.env.NODE_ENV === 'production') {
   app.get('/*', (req, res) => {
     app.use(express.static('webapp/build'))
-    res.sendFile(path.join(__dirname, '..', 'webapp', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'webapp', 'build', 'index.html'));
   });
 }
 
