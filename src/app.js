@@ -2,6 +2,7 @@ require('./db/db');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 
@@ -15,9 +16,10 @@ app.use(express.json());
 
 app.use('/api', reservationRouter);
 
-if (process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === 'production') {
   app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/app/index.html'));
+    app.use(express.static('webapp/build'))
+    res.sendFile(path.join(__dirname, '..', 'webapp', 'build', 'index.html'));
   });
 }
 

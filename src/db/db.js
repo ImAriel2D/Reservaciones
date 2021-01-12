@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://mongo:27017/reservations', {
+mongoose.connect(process.env.PORT, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
