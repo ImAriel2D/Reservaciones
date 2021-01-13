@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   decreaseIndex,
@@ -9,7 +9,13 @@ import {
 import './styles/submitForm.scss';
 
 const SubmitForm = ({ children, handleSubmit, title }) => {
+  const forms = useSelector((state) => state.form.get('forms'));
+  const formIndex = useSelector((state) => state.form.get('index'));
   const dispatch = useDispatch();
+
+  const onLastForm = formIndex === forms - 1;
+  const lastFormClass = onLastForm ? 'payment-button' : '';
+  const nextButtonText = onLastForm ? 'Pagar' : 'Siguiente';
 
   return (
     <form className="submit-form" onSubmit={handleSubmit}>
@@ -20,8 +26,8 @@ const SubmitForm = ({ children, handleSubmit, title }) => {
         <button className="form-button" type="button" onClick={() => dispatch(decreaseIndex())}>
           Anterior
         </button>
-        <button className="form-button" type="submit">
-          Siguiente
+        <button className={`form-button ${lastFormClass}`} type="submit">
+          { nextButtonText }
         </button>
       </div>
     </form>

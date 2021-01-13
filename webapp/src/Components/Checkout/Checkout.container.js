@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   ROOM_SIMPLE_PRICE,
@@ -9,13 +9,15 @@ import {
 } from '../../roomPrices';
 
 import CheckoutComponent from './Checkout.component';
+import { increaseIndex } from '../../store/actions/formActions';
 
 const CheckoutContainer = () => {
   const rooms = useSelector((state) => state.rooms);
+  const dispatch = useDispatch();
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    // console.log('paga paga paga!!!!!!!!');
+    dispatch(increaseIndex());
   };
 
   const simpleTotal = ROOM_SIMPLE_PRICE * rooms.get('simple');

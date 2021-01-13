@@ -21,7 +21,7 @@ const CheckoutComponent = ({
   const moneyFormat = formatter.format(total);
 
   return (
-    <SubmitForm handleSubmit={handleSubmitForm} title="Información de los cuartos">
+    <SubmitForm handleSubmit={handleSubmitForm} title="Información de la reservación">
       <RoomTotal
         numberOfRooms={rooms.get('simple')}
         roomType="Simple"

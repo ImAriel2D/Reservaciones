@@ -4,3 +4,5 @@ export const FORM_SET_NUMBER_OF_FORMS = 'FORM_SET_NUMBER_OF_FORMS';
 export const USER_SET_USER = 'USER_SET_USER';
 
 export const ROOMS_SET_ROOMS = 'ROOMS_SET_ROOMS';
+
+export const APP_IS_LOADING = 'APP_IS_LOADING';
