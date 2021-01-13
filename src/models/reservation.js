@@ -43,7 +43,7 @@ const reservationSchema = new mongoose.Schema({
     required: true,
   },
   paid: {
-    type: Number,
+    type: Boolean,
     required: true,
   },
   owner: {

@@ -16,10 +16,6 @@ const userSchema = new mongoose.Schema({
   maternalSurname: {
     type: String,
   },
-  age: {
-    type: Number,
-    required: true,
-  },
   dateOfBirth: {
     type: Date,
     required: true,

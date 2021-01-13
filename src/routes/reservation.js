@@ -32,15 +32,6 @@ router.post('/reservation', async (req, res) => {
   }
 });
 
-router.get('/reservations', async (req, res) => {
-  try {
-    const reservations = await Reservation.find({});
-    res.status(200).json(reservations);
-  } catch (e) {
-    res.status(400).json({ error: e });
-  }
-});
-
 router.get('/reservation/:id', async (req, res) => {
   try {
     const reservationId = req.params.id;
@@ -53,7 +44,7 @@ router.get('/reservation/:id', async (req, res) => {
       res.status(200).json({ reservation, user });
     }
   } catch (e) {
-    res.status(400).json({ error: e });
+    res.status(400).json({ error: `Reservation was not found.` });
   }
 });
 
