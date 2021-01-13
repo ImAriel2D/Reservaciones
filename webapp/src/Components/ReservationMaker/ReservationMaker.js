@@ -6,13 +6,15 @@ import { setNumberOfForms } from '../../store/actions/formActions';
 import UserFormComponent from '../UserForm';
 import DatesFormContainer from '../DatesForm';
 import RoomsFormContainer from '../RoomsForm';
+import CheckoutContainer from '../Checkout';
+
 import Loading from '../Loading';
 
 const ReservationMaker = () => {
   const index = useSelector((state) => state.form.get('index'));
   const dispatch = useDispatch();
 
-  const forms = [UserFormComponent, DatesFormContainer, RoomsFormContainer];
+  const forms = [UserFormComponent, DatesFormContainer, RoomsFormContainer, CheckoutContainer];
   const CurrentForm = forms[index];
 
   useEffect(() => {

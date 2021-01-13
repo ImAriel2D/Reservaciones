@@ -1,0 +1,17 @@
+@import "../../../styles/colors";
+@import "../../../styles/fonts";
+
+.room-total-container {
+  display: flex;
+  font-family: $font-roboto;
+  font-size: 16px;
+  justify-content: space-between;
+}
+
+.room-type {
+  font-size: 20px;
+}
+
+.total-room {
+  align-self: center;
+}
