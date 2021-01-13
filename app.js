@@ -11,7 +11,8 @@ const reservationRouter = require('./src/routes/reservation');
 app.use(bodyParser.urlencoded({
   extended: true,
 }));
-app.use(cors());
+
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 app.use('/api', reservationRouter);
