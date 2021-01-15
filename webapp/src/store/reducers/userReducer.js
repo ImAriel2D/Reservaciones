@@ -7,7 +7,7 @@ const initialState = Map({
   name: '',
   paternalSurname: '',
   maternalSurname: '',
-  dateOfBirth: moment().format(),
+  dateOfBirth: moment(),
   email: '',
   phone: '',
 });

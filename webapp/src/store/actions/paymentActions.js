@@ -1,35 +1,49 @@
 import swal from 'sweetalert';
 
-import createReservation from '../../lib/apiCreateReservation';
+import {
+  PAYMENT_SET_TOTAL,
+  PAYMENT_SET_PAID,
+} from 'store/constants';
+
+import createReservation from 'lib/apiCreateReservation';
 import { setAppIsLoading } from './appActions';
 
+export const setTotal = (payload) => ({ type: PAYMENT_SET_TOTAL, payload });
+export const setPaid = (payload) => ({ type: PAYMENT_SET_PAID, payload });
+
 export const executePayment = () => (dispatch, getState) => {
-  const storedUser = getState().user;
+  const {
+    dates,
+    user,
+    payment,
+    rooms,
+  } = getState();
 
   const data = {
     user: {
-      name: storedUser.get('name'),
-      paternalSurname: storedUser.get('paternalSurname'),
-      maternalSurname: storedUser.get('maternalSurname'),
-      dateOfBirth: storedUser.get('dateOfBirth'),
-      email: storedUser.get('email'),
-      phone: storedUser.get('phone'),
+      name: user.get('name'),
+      paternalSurname: user.get('paternalSurname'),
+      maternalSurname: user.get('maternalSurname'),
+      dateOfBirth: user.get('dateOfBirth'),
+      email: user.get('email'),
+      phone: user.get('phone'),
     },
     reservation: {
-      entryDate: '2020-02-01T18:25:43.511Z',
-      leavingDate: '2020-02-01T18:25:43.511Z',
+      entryDate: dates.get('entryDate'),
+      leavingDate: dates.get('leavingDate'),
       rooms: {
-        simple: 0,
-        double: 0,
-        master: 0,
-        suite: 0,
+        simple: rooms.get('simple'),
+        double: rooms.get('double'),
+        master: rooms.get('master'),
+        suite: rooms.get('suite'),
       },
-      total: 2500.00,
-      serviceTotal: 0,
-      totalPending: 0,
-      paid: true,
+      total: payment.get('total'),
+      serviceTotal: payment.get('serviceTotal'),
+      totalPending: payment.get('totalPending'),
+      paid: payment.get('paid'),
     },
   };
+  console.log(data);
 
   createReservation(data)
     .then(() => {

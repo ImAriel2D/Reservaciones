@@ -9,6 +9,7 @@ import {
 } from 'roomPrices';
 
 import { increaseIndex } from 'store/actions/formActions';
+import { setTotal } from 'store/actions/paymentActions';
 
 import CheckoutComponent from './Checkout.component';
 
@@ -18,16 +19,18 @@ const CheckoutContainer = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmitForm = (e) => {
-    e.preventDefault();
-    dispatch(increaseIndex());
-  };
-
   const simpleTotal = ROOM_SIMPLE_PRICE * rooms.get('simple') * numberOfNights;
   const doubleTotal = ROOM_DOUBLE_PRICE * rooms.get('double') * numberOfNights;
   const masterTotal = ROOM_MASTER_PRICE * rooms.get('master') * numberOfNights;
   const suiteTotal = ROOM_SUITE_PRICE * rooms.get('suite') * numberOfNights;
   const total = simpleTotal + doubleTotal + masterTotal + suiteTotal;
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+
+    dispatch(increaseIndex());
+    dispatch(setTotal(total));
+  };
 
   return (
     <CheckoutComponent

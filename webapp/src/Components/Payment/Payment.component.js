@@ -6,9 +6,13 @@ import Input from 'Components/Input';
 
 const PaymentComponent = ({
   handleSubmitForm,
+  total,
 }) => (
   <SubmitForm handleSubmit={handleSubmitForm} title="Información de pago">
-    <p className="total">TOTAL: 50000000000</p>
+    <p className="total">
+      Total:
+      { total }
+    </p>
     <Input
       placeHolder="ID de cuenta"
       error={false}
@@ -32,6 +36,7 @@ const PaymentComponent = ({
 
 PaymentComponent.propTypes = {
   handleSubmitForm: PropTypes.func.isRequired,
+  total: PropTypes.string.isRequired,
 };
 
 export default PaymentComponent;

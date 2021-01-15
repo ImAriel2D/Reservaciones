@@ -8,6 +8,7 @@ import {
   setLeavingDate,
   setNumberOfNights,
 } from 'store/actions/datesActions';
+
 import { increaseIndex } from 'store/actions/formActions';
 
 import DatesFormComponent from './DatesForm.component';
@@ -49,6 +50,7 @@ const DatesFormContainer = () => {
 
   return (
     <DatesFormComponent
+      dates={dates}
       handleSubmitDate={handleSubmitDates}
       handleEntryDate={handleEntryDate}
       handleLeavingDate={handleLeavingDate}

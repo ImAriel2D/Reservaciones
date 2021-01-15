@@ -34,8 +34,9 @@ const UserFormComponent = ({
       error={errors.maternalSurname}
     />
     <DayPicker
-      handleSetDate={(e) => setUser({ ...user, dateOfBirth: moment(e.target.value).format() })}
+      handleSetDate={(e) => setUser({ ...user, dateOfBirth: moment(e.target.value) })}
       placeHolder="Fecha de nacimiento"
+      value={user.dateOfBirth.format('YYYY-MM-DD')}
     />
     <Input
       placeHolder="Correo Electrónico"
@@ -58,7 +59,7 @@ UserFormComponent.propTypes = {
     name: PropTypes.string,
     paternalSurname: PropTypes.string,
     maternalSurname: PropTypes.string,
-    dateOfBirth: PropTypes.string,
+    dateOfBirth: PropTypes.instanceOf(moment).isRequired,
     email: PropTypes.string,
     phone: PropTypes.string,
   }).isRequired,
