@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setNumberOfForms } from '../../store/actions/formActions';
 
-import UserFormComponent from '../UserForm';
+// import UserFormComponent from '../UserForm';
 import DatesFormContainer from '../DatesForm';
-import RoomsFormContainer from '../RoomsForm';
-import CheckoutContainer from '../Checkout';
-import PaymentContainer from '../Payment';
+// import RoomsFormContainer from '../RoomsForm';
+// import CheckoutContainer from '../Checkout';
+// import PaymentContainer from '../Payment';
 
 import Loading from '../Loading';
 
@@ -17,11 +17,11 @@ const ReservationMaker = () => {
   const dispatch = useDispatch();
 
   const forms = [
-    UserFormComponent,
+    // UserFormComponent,
     DatesFormContainer,
-    RoomsFormContainer,
-    CheckoutContainer,
-    PaymentContainer,
+    // RoomsFormContainer,
+    // CheckoutContainer,
+    // PaymentContainer,
   ];
   const CurrentForm = forms[index];
 
