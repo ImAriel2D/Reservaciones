@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-import Input from '../Input';
-import DayPicker from '../DayPicker';
-import SubmitForm from '../SubmitForm';
+import Input from 'Components/Input';
+import DayPicker from 'Components/DayPicker';
+import SubmitForm from 'Components/SubmitForm';
 
 import './styles/userForm.scss';
 

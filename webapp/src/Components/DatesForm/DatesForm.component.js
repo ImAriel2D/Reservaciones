@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import DayPicker from '../DayPicker';
-import SubmitForm from '../SubmitForm/SubmitForm';
+import DayPicker from 'Components/DayPicker';
+import SubmitForm from 'Components/SubmitForm/SubmitForm';
 
 const DatesFormComponent = ({
   handleSubmitDate,

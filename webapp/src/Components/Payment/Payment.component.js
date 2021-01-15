@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SubmitForm from '../SubmitForm';
-import Input from '../Input';
+import SubmitForm from 'Components/SubmitForm';
+import Input from 'Components/Input';
 
 const PaymentComponent = ({
   handleSubmitForm,

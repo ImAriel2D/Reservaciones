@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  decreaseIndex,
-} from '../../store/actions/formActions';
+import { decreaseIndex } from 'store/actions/formActions';
 
 import './styles/submitForm.scss';
 

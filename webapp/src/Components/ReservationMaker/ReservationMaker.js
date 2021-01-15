@@ -1,15 +1,15 @@
 import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setNumberOfForms } from '../../store/actions/formActions';
+import { setNumberOfForms } from 'store/actions/formActions';
 
-// import UserFormComponent from '../UserForm';
-import DatesFormContainer from '../DatesForm';
-// import RoomsFormContainer from '../RoomsForm';
-// import CheckoutContainer from '../Checkout';
-// import PaymentContainer from '../Payment';
+import UserFormComponent from 'Components/UserForm';
+import DatesFormContainer from 'Components/DatesForm';
+import RoomsFormContainer from 'Components/RoomsForm';
+import CheckoutContainer from 'Components/Checkout';
+import PaymentContainer from 'Components/Payment';
 
-import Loading from '../Loading';
+import Loading from 'Components/Loading';
 
 const ReservationMaker = () => {
   const isLoading = useSelector((state) => state.app.get('isLoading'));
@@ -17,11 +17,11 @@ const ReservationMaker = () => {
   const dispatch = useDispatch();
 
   const forms = [
-    // UserFormComponent,
+    UserFormComponent,
     DatesFormContainer,
-    // RoomsFormContainer,
-    // CheckoutContainer,
-    // PaymentContainer,
+    RoomsFormContainer,
+    CheckoutContainer,
+    PaymentContainer,
   ];
   const CurrentForm = forms[index];
 

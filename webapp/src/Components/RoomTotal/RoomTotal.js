@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { formatter } from '../../utils/formatter';
+import { formatter } from 'utils/formatter';
 
 import './styles/roomTotal.scss';
 

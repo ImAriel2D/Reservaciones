@@ -23,4 +23,11 @@ module.exports = {
     'react/jsx-fragments': ['error', 'element'],
     'import/prefer-default-export': 'off',
   },
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+      },
+    },
+  },
 };

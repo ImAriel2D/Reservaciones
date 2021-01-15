@@ -7,8 +7,8 @@ import {
   setEntryDate,
   setLeavingDate,
   setNumberOfNights,
-} from '../../store/actions/datesActions';
-import { increaseIndex } from '../../store/actions/formActions';
+} from 'store/actions/datesActions';
+import { increaseIndex } from 'store/actions/formActions';
 
 import DatesFormComponent from './DatesForm.component';
 

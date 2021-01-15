@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import NumberPicker from '../NumberPicker/NumberPicker';
-import SubmitForm from '../SubmitForm';
+import NumberPicker from 'Components/NumberPicker/NumberPicker';
+import SubmitForm from 'Components/SubmitForm';
 
 import './styles/reservationForm.scss';
 

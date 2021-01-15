@@ -5,7 +5,7 @@ import {
   DATES_SET_ENTRY_DATE,
   DATES_SET_LEAVING_DATE,
   DATES_SET_NUMBER_OF_NIGHTS,
-} from '../constants';
+} from 'store/constants';
 
 const initialState = Map({
   entryDate: moment(),

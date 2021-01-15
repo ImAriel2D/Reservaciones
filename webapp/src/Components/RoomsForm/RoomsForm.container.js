@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { increaseIndex } from '../../store/actions/formActions';
-import setStoredRooms from '../../store/actions/roomsActions';
+import { increaseIndex } from 'store/actions/formActions';
+import setStoredRooms from 'store/actions/roomsActions';
 
 import RoomsFormComponent from './RoomsForm.component';
 

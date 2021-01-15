@@ -5,10 +5,10 @@ import {
   checkForEmptyUserProperties,
   validateEmail,
   objectHasFalseAttributes,
-} from '../../utils/validateUser';
+} from 'utils/validateUser';
 
-import { increaseIndex } from '../../store/actions/formActions';
-import setStoredUser from '../../store/actions/userActions';
+import { increaseIndex } from 'store/actions/formActions';
+import setStoredUser from 'store/actions/userActions';
 
 import UserFormComponent from './UserForm.component';
 

@@ -2,10 +2,10 @@ import React from 'react';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 
-import { formatter } from '../../utils/formatter';
+import { formatter } from 'utils/formatter';
 
-import RoomTotal from '../RoomTotal';
-import SubmitForm from '../SubmitForm';
+import RoomTotal from 'Components/RoomTotal';
+import SubmitForm from 'Components/SubmitForm';
 
 import './styles/payment.scss';
 
