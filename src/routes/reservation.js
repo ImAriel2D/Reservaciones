@@ -44,7 +44,7 @@ router.get('/reservation/:id', async (req, res) => {
       res.status(200).json({ reservation, user });
     }
   } catch (e) {
-    res.status(400).json({ error: `Reservation was not found.` });
+    res.status(400).json({ error: 'Reservation was not found.' });
   }
 });
 

@@ -30,6 +30,7 @@
     "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.15",
+    "node-fetch": "^2.6.1",
     "uuid": "^8.3.1",
     "validator": "^13.1.17"
   },
