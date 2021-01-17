@@ -25,18 +25,28 @@ const DatesFormContainer = () => {
 
   const handleSubmitDates = (e) => {
     e.preventDefault();
-    const numberOfNights = dates.leavingDate.diff(dates.entryDate, 'days');
+    const entryBeforeNow = moment().diff(dates.entryDate, 'days');
+    const leavingBeforeNow = moment().diff(dates.leavingDate, 'days');
 
-    if (numberOfNights <= 0) {
+    if (entryBeforeNow > 0 || leavingBeforeNow > 0) {
       swal({
         icon: 'error',
-        text: 'La fecha de salida no puede ser antes de la de llegada!',
+        text: 'La fecha de salida y de salida no pueden ser fecha que ya pasaron!',
       });
     } else {
-      dispatch(setEntryDate(moment(dates.entryDate)));
-      dispatch(setLeavingDate(moment(dates.leavingDate)));
-      dispatch(setNumberOfNights(numberOfNights));
-      dispatch(increaseIndex());
+      const numberOfNights = dates.leavingDate.diff(dates.entryDate, 'days');
+
+      if (numberOfNights <= 0) {
+        swal({
+          icon: 'error',
+          text: 'La fecha de salida no puede ser antes de la de llegada!',
+        });
+      } else {
+        dispatch(setEntryDate(moment(dates.entryDate)));
+        dispatch(setLeavingDate(moment(dates.leavingDate)));
+        dispatch(setNumberOfNights(numberOfNights));
+        dispatch(increaseIndex());
+      }
     }
   };
 

@@ -1,5 +1,8 @@
+import swal from 'sweetalert';
+
 import { consultRooms } from 'lib/apiRooms';
 import { setAppIsLoading } from 'store/actions/appActions';
+import { decreaseIndex } from 'store/actions/formActions';
 
 import {
   ROOMS_SET_ROOMS,
@@ -30,5 +33,10 @@ export const fetchRooms = () => (dispatch, getState) => {
     })
     .catch(() => {
       dispatch(setAppIsLoading(false));
+      dispatch(decreaseIndex());
+      swal({
+        text: '',
+        icon: '',
+      });
     });
 };

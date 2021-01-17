@@ -18,18 +18,21 @@ const PaymentComponent = ({
       error={false}
       handleSetValue={() => console.log('temp')}
       value=""
+      maxLength={16}
     />
     <Input
       placeHolder="Numero de cuenta"
       error={false}
       handleSetValue={() => console.log('temp')}
       value=""
+      maxLength={16}
     />
     <Input
       placeHolder="CVV"
       error={false}
       handleSetValue={() => console.log('temp')}
       value=""
+      maxLength={3}
     />
   </SubmitForm>
 );

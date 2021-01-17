@@ -43,7 +43,6 @@ export const executePayment = () => (dispatch, getState) => {
       paid: payment.get('paid'),
     },
   };
-  console.log(data);
 
   createReservation(data)
     .then(() => {

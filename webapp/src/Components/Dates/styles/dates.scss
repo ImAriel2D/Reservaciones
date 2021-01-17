@@ -1,0 +1,15 @@
+@import "../../../styles/fonts";
+
+.showing-date {
+  display: flex;
+  font-family: $font-rubik;
+  justify-content: space-between;
+}
+
+.showing-date-name {
+  font-size: 20px;
+}
+
+.showing-date-date {
+  font-size: 16px;
+}

@@ -29,7 +29,7 @@ const NumberPicker = ({
       </div>
       {
         (roomsAvailable <= 5 && hasRoomsAvailable)
-        && <p className="last-available">{`Últimos ${roomsAvailable} disponibles.`}</p>
+        && <p className="last-available">{`Últimos cuartos (${roomsAvailable}) disponibles.`}</p>
       }
     </div>
   );

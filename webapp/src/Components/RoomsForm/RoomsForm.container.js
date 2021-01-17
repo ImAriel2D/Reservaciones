@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import swal from 'sweetalert';
 
 import { increaseIndex } from 'store/actions/formActions';
 import { fetchRooms, setStoredRooms } from 'store/actions/roomsActions';
@@ -21,10 +22,20 @@ const RoomsFormContainer = () => {
     suite: storedRooms.get('suite'),
   });
 
+  const noRoomsAvailable = () => !rooms.simple && !rooms.double && !rooms.master && !rooms.suite;
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    dispatch(increaseIndex());
-    dispatch(setStoredRooms(rooms));
+
+    if (noRoomsAvailable()) {
+      swal({
+        icon: 'info',
+        text: 'Debes seleccionar al menos un cuarto.',
+      });
+    } else {
+      dispatch(increaseIndex());
+      dispatch(setStoredRooms(rooms));
+    }
   };
 
   const handleDecreaseSimpleRoom = () => {

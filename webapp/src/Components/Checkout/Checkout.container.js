@@ -15,6 +15,7 @@ import CheckoutComponent from './Checkout.component';
 
 const CheckoutContainer = () => {
   const rooms = useSelector((state) => state.rooms);
+  const dates = useSelector((state) => state.dates);
   const numberOfNights = useSelector((state) => state.dates.get('numberOfNights'));
 
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ const CheckoutContainer = () => {
 
   return (
     <CheckoutComponent
+      dates={dates}
       handleSubmitForm={handleSubmitForm}
       rooms={rooms}
       simpleTotal={simpleTotal}

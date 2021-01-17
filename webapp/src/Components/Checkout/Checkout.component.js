@@ -6,10 +6,12 @@ import { formatter } from 'utils/formatter';
 
 import RoomTotal from 'Components/RoomTotal';
 import SubmitForm from 'Components/SubmitForm';
+import Date from 'Components/Dates';
 
 import './styles/payment.scss';
 
 const CheckoutComponent = ({
+  dates,
   handleSubmitForm,
   rooms,
   simpleTotal,
@@ -43,6 +45,15 @@ const CheckoutComponent = ({
         roomType="Suite"
         total={suiteTotal}
       />
+      <Date
+        date={dates.get('entryDate')}
+        dateName="Fecha llegada"
+      />
+      <Date
+        date={dates.get('leavingDate')}
+        dateName="Fecha salida"
+      />
+
       <p className="total">
         Total:
         {' '}
@@ -53,6 +64,7 @@ const CheckoutComponent = ({
 };
 
 CheckoutComponent.propTypes = {
+  dates: PropTypes.instanceOf(Map).isRequired,
   handleSubmitForm: PropTypes.func.isRequired,
   rooms: PropTypes.instanceOf(Map).isRequired,
   simpleTotal: PropTypes.number.isRequired,
