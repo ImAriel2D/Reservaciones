@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Map } from 'immutable';
 
 import {
   ROOM_SIMPLE_PRICE,
@@ -15,6 +16,7 @@ import './styles/reservationForm.scss';
 
 const RoomsFormComponent = ({
   rooms,
+  roomsAvailable,
   handleSubmitForm,
   handleDecreaseSimpleRoom,
   handleDecreaseDoubleRoom,
@@ -31,6 +33,7 @@ const RoomsFormComponent = ({
       value={rooms.simple}
       handleIncrease={handleIncreaseSimpleRoom}
       handleDecrease={handleDecreaseSimpleRoom}
+      roomsAvailable={roomsAvailable.getIn(['available', 'simple'])}
     />
 
     <NumberPicker
@@ -38,6 +41,7 @@ const RoomsFormComponent = ({
       value={rooms.double}
       handleIncrease={handleIncreaseDoubleRoom}
       handleDecrease={handleDecreaseDoubleRoom}
+      roomsAvailable={roomsAvailable.getIn(['available', 'double'])}
     />
 
     <NumberPicker
@@ -45,12 +49,14 @@ const RoomsFormComponent = ({
       value={rooms.master}
       handleIncrease={handleIncreaseMasterRoom}
       handleDecrease={handleDecreaseMasterRoom}
+      roomsAvailable={roomsAvailable.getIn(['available', 'master'])}
     />
     <NumberPicker
-      placeHolder={`Cuartos Matrimonial $${ROOM_SUITE_PRICE}`}
+      placeHolder={`Cuartos Suite $${ROOM_SUITE_PRICE}`}
       value={rooms.suite}
       handleIncrease={handleIncreaseSuiteRoom}
       handleDecrease={handleDecreaseSuiteRoom}
+      roomsAvailable={roomsAvailable.getIn(['available', 'suite'])}
     />
   </SubmitForm>
 );
@@ -62,6 +68,7 @@ RoomsFormComponent.propTypes = {
     master: PropTypes.number.isRequired,
     suite: PropTypes.number.isRequired,
   }).isRequired,
+  roomsAvailable: PropTypes.instanceOf(Map).isRequired,
   handleSubmitForm: PropTypes.func.isRequired,
   handleDecreaseSimpleRoom: PropTypes.func.isRequired,
   handleDecreaseDoubleRoom: PropTypes.func.isRequired,

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import swal from 'sweetalert';
+import moment from 'moment';
 
 import {
   checkForEmptyUserProperties,
   validateEmail,
+  validatePhone,
   objectHasFalseAttributes,
 } from 'utils/validateUser';
 
@@ -37,17 +40,26 @@ const UserFormContainer = () => {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    const { email } = user;
+    const { email, phone, dateOfBirth } = user;
+    const isAnAdult = moment().diff(dateOfBirth, 'YEAR') >= 18;
 
-    const emptyPropertiesErrors = checkForEmptyUserProperties(user);
-    const isEmailValid = validateEmail(email);
+    if (isAnAdult) {
+      const emptyPropertiesErrors = checkForEmptyUserProperties(user);
+      const isEmailValid = validateEmail(email);
+      const isPhoneValid = validatePhone(phone);
 
-    const newErrors = { ...emptyPropertiesErrors, email: !isEmailValid };
-    setErrors(newErrors);
+      const newErrors = { ...emptyPropertiesErrors, email: !isEmailValid, phone: !isPhoneValid };
+      setErrors(newErrors);
 
-    if (!objectHasFalseAttributes(newErrors)) {
-      dispatch(increaseIndex());
-      dispatch(setStoredUser(user));
+      if (!objectHasFalseAttributes(newErrors)) {
+        dispatch(increaseIndex());
+        dispatch(setStoredUser(user));
+      }
+    } else {
+      swal({
+        text: 'Ocupas ser mayor de edad para reservar una habitación!',
+        icon: 'error',
+      });
     }
   };
 

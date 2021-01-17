@@ -5,7 +5,11 @@ import { formatter } from 'utils/formatter';
 
 import './styles/roomTotal.scss';
 
-const RoomTotal = ({ roomType, numberOfRooms, total }) => {
+const RoomTotal = ({
+  roomType,
+  numberOfRooms,
+  total,
+}) => {
   const moneyFormat = formatter.format(total);
 
   return numberOfRooms > 0 ? (

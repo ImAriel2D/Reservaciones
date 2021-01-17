@@ -17,3 +17,8 @@ export const objectHasFalseAttributes = (object) => {
   const userProperties = Object.entries(object);
   return userProperties.some(([prop]) => object[prop] === true);
 };
+
+export const validatePhone = (phoneNumber) => {
+  const validPhoneExp = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+  return validPhoneExp.test(phoneNumber);
+};

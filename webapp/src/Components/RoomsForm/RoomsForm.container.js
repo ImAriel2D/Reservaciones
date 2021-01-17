@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { increaseIndex } from 'store/actions/formActions';
-import setStoredRooms from 'store/actions/roomsActions';
+import { fetchRooms, setStoredRooms } from 'store/actions/roomsActions';
 
 import RoomsFormComponent from './RoomsForm.component';
 
 const RoomsFormContainer = () => {
   const storedRooms = useSelector((state) => state.rooms);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRooms());
+  }, [dispatch]);
 
   const [rooms, setRooms] = useState({
     simple: storedRooms.get('simple'),
@@ -15,8 +20,6 @@ const RoomsFormContainer = () => {
     master: storedRooms.get('master'),
     suite: storedRooms.get('suite'),
   });
-
-  const dispatch = useDispatch();
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -31,7 +34,10 @@ const RoomsFormContainer = () => {
   };
 
   const handleIncreaseSimpleRoom = () => {
-    setRooms({ ...rooms, simple: rooms.simple + 1 });
+    const simpleAvailable = storedRooms.getIn(['available', 'simple']);
+    if (simpleAvailable > rooms.simple) {
+      setRooms({ ...rooms, simple: rooms.simple + 1 });
+    }
   };
 
   const handleDecreaseDoubleRoom = () => {
@@ -41,7 +47,10 @@ const RoomsFormContainer = () => {
   };
 
   const handleIncreaseDoubleRoom = () => {
-    setRooms({ ...rooms, double: rooms.double + 1 });
+    const doubleAvailable = storedRooms.getIn(['available', 'double']);
+    if (doubleAvailable > rooms.double) {
+      setRooms({ ...rooms, double: rooms.double + 1 });
+    }
   };
 
   const handleDecreaseMasterRoom = () => {
@@ -51,7 +60,10 @@ const RoomsFormContainer = () => {
   };
 
   const handleIncreaseMasterRoom = () => {
-    setRooms({ ...rooms, master: rooms.master + 1 });
+    const masterAvailable = storedRooms.getIn(['available', 'master']);
+    if (masterAvailable > rooms.master) {
+      setRooms({ ...rooms, master: rooms.master + 1 });
+    }
   };
 
   const handleDecreaseSuiteRoom = () => {
@@ -61,12 +73,16 @@ const RoomsFormContainer = () => {
   };
 
   const handleIncreaseSuiteRoom = () => {
-    setRooms({ ...rooms, suite: rooms.suite + 1 });
+    const suiteAvailable = storedRooms.getIn(['available', 'suite']);
+    if (suiteAvailable > rooms.suite) {
+      setRooms({ ...rooms, suite: rooms.suite + 1 });
+    }
   };
 
   return (
     <RoomsFormComponent
       rooms={rooms}
+      roomsAvailable={storedRooms}
       handleSubmitForm={handleSubmitForm}
       handleDecreaseSimpleRoom={handleDecreaseSimpleRoom}
       handleDecreaseDoubleRoom={handleDecreaseDoubleRoom}

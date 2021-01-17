@@ -8,9 +8,10 @@ const Input = ({
   value,
   handleSetValue,
   error,
+  maxLength,
 }) => (
   <div className="text-input-container">
-    <input className="text-input" placeholder={placeHolder} value={value} onChange={handleSetValue} type="text" />
+    <input maxLength={maxLength} className="text-input" placeholder={placeHolder} value={value} onChange={handleSetValue} type="text" />
     { error
     && (
     <p className="error-text">
@@ -23,10 +24,11 @@ const Input = ({
 );
 
 Input.propTypes = {
+  error: PropTypes.bool.isRequired,
+  handleSetValue: PropTypes.func.isRequired,
+  maxLength: PropTypes.number.isRequired,
   placeHolder: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  handleSetValue: PropTypes.func.isRequired,
-  error: PropTypes.bool.isRequired,
 };
 
 export default Input;
