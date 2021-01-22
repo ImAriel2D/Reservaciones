@@ -3,7 +3,7 @@ import config from 'config';
 
 const { apiGatewayUrl } = config;
 
-export const createReservationService = (url, body, resolve, reject) => {
+export const post = (url, body, resolve, reject) => {
   axios.post(`${apiGatewayUrl}${url}`, body, {
     headers: {
       'Content-Type': 'application/json',
@@ -13,7 +13,7 @@ export const createReservationService = (url, body, resolve, reject) => {
     .catch(() => reject(new Error('We could not connect with the server!')));
 };
 
-export const consultOccupiedRooms = (url, body, resolve, reject) => {
+export const get = (url, body, resolve, reject) => {
   axios.get(`${apiGatewayUrl}${url}`, {
     headers: {
       'Content-Type': 'application/json',

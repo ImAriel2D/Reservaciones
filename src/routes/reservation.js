@@ -1,6 +1,11 @@
 const express = require('express');
+const fetch = require('node-fetch');
+const config = require('../config');
+const { ROOMS_SAVE_ROUTE } = require('../routes');
 
 const router = express.Router();
+
+const { apiGatewayUrl } = config;
 
 const Reservation = require('../models/reservation');
 const User = require('../models/user');
@@ -26,7 +31,28 @@ router.post('/reservation', async (req, res) => {
       reservation: reservation._id,
     };
 
-    res.status(201).json(responseData);
+    const saveRoomsData = {
+      fechaEntrada: reservation.entryDate,
+      fechaSalida: reservation.leavingDate,
+      noHabSencilla: responseData.rooms.simple,
+      noHabDoble: responseData.rooms.double,
+      noHabMatrimonial: responseData.rooms.master,
+      noHabSuite: responseData.rooms.suite,
+    };
+
+    fetch(`${apiGatewayUrl}/api/rooms/save`, {
+      method: 'POST',
+      body: JSON.stringify(saveRoomsData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(() => {
+        res.status(201).json(responseData);
+      })
+      .catch((e) => {
+        res.status(400).json({ error: e });
+      });
   } catch (e) {
     res.status(400).json({ error: e });
   }
@@ -35,7 +61,7 @@ router.post('/reservation', async (req, res) => {
 router.get('/reservation/:id', async (req, res) => {
   try {
     const reservationId = req.params.id;
-    const reservation = await Reservation.findOne({ _id: reservationId });
+    const reservation = await Reservation.findById(reservationId);
     const user = await User.findById(reservation.owner);
 
     if (!reservation) {

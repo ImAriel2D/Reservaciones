@@ -8,6 +8,7 @@ const app = express();
 
 const reservationRouter = require('./src/routes/reservation');
 const roomsRouter = require('./src/routes/rooms');
+const payment = require('./src/routes/payment');
 
 app.use(bodyParser.urlencoded({
   extended: true,
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use('/api', reservationRouter);
 app.use('/api', roomsRouter);
+app.use('/api', payment);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('webapp/build'));

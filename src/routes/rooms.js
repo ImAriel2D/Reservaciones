@@ -11,12 +11,15 @@ const {
 
 const router = express.Router();
 
-router.get('/rooms/occupied', (req, res) => {
+router.post('/rooms/occupied', (req, res) => {
   const { body } = req;
 
   fetch(`${hotelApiGatewayUrl}${ROOMS_CONSULT_ROUTE}`, {
     method: 'POST',
-    body,
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
     .then((res) => res.json())
     .then((rooms) => {

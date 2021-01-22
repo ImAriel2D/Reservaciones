@@ -5,13 +5,13 @@ import {
   PAYMENT_SET_PAID,
 } from 'store/constants';
 
-import createReservation from 'lib/apiCreateReservation';
+import { paymentService, createReservation } from 'lib/apiPayment';
 import { setAppIsLoading } from './appActions';
 
 export const setTotal = (payload) => ({ type: PAYMENT_SET_TOTAL, payload });
 export const setPaid = (payload) => ({ type: PAYMENT_SET_PAID, payload });
 
-export const executePayment = () => (dispatch, getState) => {
+export const executeOccupiedRooms = () => (dispatch, getState) => {
   const {
     dates,
     user,
@@ -40,23 +40,40 @@ export const executePayment = () => (dispatch, getState) => {
       total: payment.get('total'),
       serviceTotal: payment.get('serviceTotal'),
       totalPending: payment.get('totalPending'),
-      paid: payment.get('paid'),
+      paid: true,
     },
   };
 
   createReservation(data)
     .then(() => {
-      dispatch(setAppIsLoading(false));
       swal({
         icon: 'success',
         text: 'El pago fue exitoso.',
       });
     })
     .catch(() => {
-      dispatch(setAppIsLoading(false));
       swal({
         icon: 'error',
-        text: 'No se pudo procesar el pago.',
+        text: 'Hubo un problema al crear la reservación.',
       });
-    });
+    }).finally(() => dispatch(setAppIsLoading(false)));
+};
+
+export const executePayment = (payment) => (dispatch, getState) => {
+  const body = {
+    ...payment,
+    amount: getState().payment.get('total'),
+  };
+
+  paymentService(body)
+    .then(() => {
+      dispatch(executeOccupiedRooms());
+    })
+    .catch(() => {
+      swal({
+        icon: 'error',
+        text: 'Ha ocurrido un error con el pago, inténtelo mas tarde!',
+      });
+    })
+    .finally(() => dispatch(setAppIsLoading(false)));
 };

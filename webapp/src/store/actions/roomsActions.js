@@ -35,8 +35,8 @@ export const fetchRooms = () => (dispatch, getState) => {
       dispatch(setAppIsLoading(false));
       dispatch(decreaseIndex());
       swal({
-        text: '',
-        icon: '',
+        text: 'No hay cuartos disponibles!',
+        icon: 'info',
       });
     });
 };
