@@ -1,7 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const config = require('../config');
-const { ROOMS_SAVE_ROUTE } = require('../routes');
+const { sendEmail } = require('../emails');
 
 const router = express.Router();
 
@@ -48,9 +48,11 @@ router.post('/reservation', async (req, res) => {
       },
     })
       .then(() => {
+        sendEmail(responseData);
         res.status(201).json(responseData);
       })
       .catch((e) => {
+        console.log(e);
         res.status(400).json({ error: e });
       });
   } catch (e) {
