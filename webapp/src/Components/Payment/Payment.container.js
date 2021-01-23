@@ -11,8 +11,8 @@ import PaymentComponent from './Payment.component';
 const PaymentContainer = () => {
   const [paymentInfo, setPaymentInfo] = useState({
     number: '',
-    cvv: '',
     name: '',
+    cvv: '',
     month: 0,
     year: 0,
   });
@@ -25,8 +25,15 @@ const PaymentContainer = () => {
   const handlePayment = (e) => {
     e.preventDefault();
 
+    const correctData = {
+      ...paymentInfo,
+      cvv: parseInt(paymentInfo.cvv, 10),
+      year: parseInt(paymentInfo.year, 10),
+      month: parseInt(paymentInfo.month, 10),
+    };
+
     dispatch(setAppIsLoading(true));
-    dispatch(executePayment(paymentInfo));
+    dispatch(executePayment(correctData));
   };
 
   return (

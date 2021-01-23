@@ -65,6 +65,8 @@ export const executePayment = (payment) => (dispatch, getState) => {
     amount: getState().payment.get('total'),
   };
 
+  console.log(body);
+
   paymentService(body)
     .then(() => {
       dispatch(executeOccupiedRooms());

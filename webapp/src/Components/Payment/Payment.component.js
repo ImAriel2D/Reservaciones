@@ -38,19 +38,21 @@ const PaymentComponent = ({
         error={false}
         handleSetValue={(e) => setPaymentInfo({ ...paymentInfo, name: e.target.value })}
         value={paymentInfo.name}
-        maxLength={16}
+        maxLength={120}
       />
       <Input
         placeHolder="CVV"
         error={false}
-        handleSetValue={(e) => setPaymentInfo({ ...paymentInfo, cvv: e.target.value })}
+        handleSetValue={(e) => {
+          setPaymentInfo({ ...paymentInfo, cvv: e.target.value });
+        }}
         value={paymentInfo.cvv}
         maxLength={3}
       />
       <h1 className="card-info">Mes</h1>
       <select
         className="number-selector"
-        onChange={(e) => setPaymentInfo({ ...paymentInfo, months: parseInt(e.target.value, 10) })}
+        onChange={(e) => setPaymentInfo({ ...paymentInfo, month: parseInt(e.target.value, 10) })}
       >
         {
           months.map((value) => <option key={value} value={value}>{value}</option>)

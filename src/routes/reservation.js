@@ -76,8 +76,4 @@ router.get('/reservation/:id', async (req, res) => {
   }
 });
 
-router.get('/test', (req, res) => {
-  res.send('Testing!!!');
-});
-
 module.exports = router;

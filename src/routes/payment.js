@@ -10,29 +10,32 @@ router.post('/payment', (req, res) => {
   const { body } = req;
 
   const finalData = {
-    AccountCompanyId: 5, // TODO: GET ACTUAL COMPANY ID
+    AccountCompanyId: 20, // HARD-CODING 20 BECAUSE ITS THE RESERVATION ACCOUNT ID
     Amount: body.amount,
     CardNumber: body.number,
     Cvv: body.cvv,
     Description: 'Pago reservación',
-    Month: 5,
+    Month: body.month,
     Year: body.year,
     Name: body.name,
   };
 
   fetch(`${bankGatewayUrl}${HOTEL_EXECUTE_PAYMENT}`, {
     method: 'POST',
-    body: finalData,
+    body: JSON.stringify(finalData),
     headers: {
       'Content-Type': 'application/json',
     },
   })
-    .then((res) => res.json())
+    .then((response) => response.json())
     .then((result) => {
-      res.status(201).send({ result });
+      if (result.error || result.status === 400) {
+        throw result.error;
+      } else {
+        res.status(201).send(result);
+      }
     })
     .catch((e) => {
-      console.log(e);
       res.status(401).send({
         message: 'We could not execute the payment at this moment.',
         error: e,

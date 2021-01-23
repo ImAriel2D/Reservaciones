@@ -21,7 +21,7 @@ const sendEmail = (reservation) => {
     subject: 'Reservación en HOTEL-CASINO',
     text: formattedTextContent,
   });
-}
+};
 
 module.exports = {
   sendEmail,
