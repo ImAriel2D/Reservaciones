@@ -3,13 +3,30 @@ import swal from 'sweetalert';
 import {
   PAYMENT_SET_TOTAL,
   PAYMENT_SET_PAID,
+  PAYMENT_SET_PROMOTION_ACTIVE,
+  PAYMENT_SET_DISCOUNT,
 } from 'store/constants';
+
+import { apiGetPromotion } from 'lib/apiPromotion';
 
 import { paymentService, createReservation } from 'lib/apiPayment';
 import { setAppIsLoading } from './appActions';
 
 export const setTotal = (payload) => ({ type: PAYMENT_SET_TOTAL, payload });
 export const setPaid = (payload) => ({ type: PAYMENT_SET_PAID, payload });
+export const setIsPromotionActive = (payload) => ({ type: PAYMENT_SET_PROMOTION_ACTIVE, payload });
+export const setDiscount = (payload) => ({ type: PAYMENT_SET_DISCOUNT, payload });
+
+export const activatePromotion = (discountRate) => (dispatch, getState) => {
+  const total = getState().payment.get('total');
+
+  const discount = (total * discountRate) / 100;
+  const discountedPrice = total - discount;
+
+  const finalTotal = discountRate > 0 && discountRate <= 100 ? discountedPrice : total;
+
+  dispatch(setTotal(finalTotal));
+};
 
 export const executeOccupiedRooms = () => (dispatch, getState) => {
   const {
@@ -65,8 +82,6 @@ export const executePayment = (payment) => (dispatch, getState) => {
     amount: getState().payment.get('total'),
   };
 
-  console.log(body);
-
   paymentService(body)
     .then(() => {
       dispatch(executeOccupiedRooms());
@@ -78,4 +93,16 @@ export const executePayment = (payment) => (dispatch, getState) => {
       });
     })
     .finally(() => dispatch(setAppIsLoading(false)));
+};
+
+export const findPromotion = (promotion) => (dispatch) => {
+  apiGetPromotion({}, promotion)
+    .then(({ data }) => {
+      const discount = data.descuento;
+      dispatch(setDiscount(discount));
+      dispatch(setIsPromotionActive(true));
+    })
+    .catch((e) => {
+      console.log(e);
+    });
 };

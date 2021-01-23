@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setAppIsLoading } from 'store/actions/appActions';
-import { executePayment } from 'store/actions/paymentActions';
+import { executePayment, activatePromotion } from 'store/actions/paymentActions';
 
 import { formatter } from 'utils/formatter';
 
 import PaymentComponent from './Payment.component';
 
 const PaymentContainer = () => {
+  const payment = useSelector((state) => state.payment);
+  const total = payment.get('total');
+  const discount = payment.get('discount');
+  const dispatch = useDispatch();
+
   const [paymentInfo, setPaymentInfo] = useState({
     number: '',
     name: '',
@@ -17,10 +22,11 @@ const PaymentContainer = () => {
     year: 0,
   });
 
-  const payment = useSelector((state) => state.payment);
-  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(activatePromotion(discount));
+  }, [dispatch]);
 
-  const moneyFormat = formatter.format(payment.get('total'));
+  const moneyFormat = formatter.format(total);
 
   const handlePayment = (e) => {
     e.preventDefault();

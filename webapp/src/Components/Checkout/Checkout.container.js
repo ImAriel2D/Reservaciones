@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -9,11 +9,13 @@ import {
 } from 'roomPrices';
 
 import { increaseIndex } from 'store/actions/formActions';
-import { setTotal } from 'store/actions/paymentActions';
+import { setTotal, findPromotion } from 'store/actions/paymentActions';
+import { formatter } from 'utils/formatter';
 
 import CheckoutComponent from './Checkout.component';
 
 const CheckoutContainer = () => {
+  const [promotionCode, setPromotionCode] = useState('');
   const rooms = useSelector((state) => state.rooms);
   const dates = useSelector((state) => state.dates);
   const numberOfNights = useSelector((state) => state.dates.get('numberOfNights'));
@@ -25,12 +27,17 @@ const CheckoutContainer = () => {
   const masterTotal = ROOM_MASTER_PRICE * rooms.get('master') * numberOfNights;
   const suiteTotal = ROOM_SUITE_PRICE * rooms.get('suite') * numberOfNights;
   const total = simpleTotal + doubleTotal + masterTotal + suiteTotal;
+  const totalFormatted = formatter.format(total);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
 
     dispatch(increaseIndex());
     dispatch(setTotal(total));
+  };
+
+  const onClickFindPromotion = () => {
+    dispatch(findPromotion(promotionCode));
   };
 
   return (
@@ -42,7 +49,10 @@ const CheckoutContainer = () => {
       doubleTotal={doubleTotal}
       masterTotal={masterTotal}
       suiteTotal={suiteTotal}
-      total={total}
+      total={totalFormatted}
+      setPromotionCode={setPromotionCode}
+      promotionCode={promotionCode}
+      onClickFindPromotion={onClickFindPromotion}
     />
   );
 };
