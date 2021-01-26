@@ -29,10 +29,10 @@ router.post('/payment', (req, res) => {
   })
     .then((response) => response.json())
     .then((result) => {
-      if (result.error || result.status === 400) {
-        throw result.error;
-      } else {
+      if (result.transactionId) {
         res.status(201).send(result);
+      } else {
+        throw result.error;
       }
     })
     .catch((e) => {
