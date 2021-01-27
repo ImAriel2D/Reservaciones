@@ -71,8 +71,24 @@ router.get('/reservation/:id', async (req, res) => {
       res.status(200).json({ reservation, user });
     }
   } catch (e) {
-    res.status(400).json({ error: 'Reservation was not found.' });
+    res.status(404).json({ error: 'Reservation was not found.' });
   }
 });
+
+router.delete('/reservation/:id', async (req, res) => {
+  try {
+    const reservationId = req.params.id;
+    const reservation = await Reservation.findByIdAndDelete(reservationId);
+
+    if (!reservation) {
+      res.status(404).json({ error: 'Reservation was not found.' });
+    } else {
+      res.status(200).json({ message: 'Reservation was removed' });
+    }
+  } catch (e) {
+    res.status(404).json({ error: 'Reservation was not found. '});
+  }
+});
+
 
 module.exports = router;

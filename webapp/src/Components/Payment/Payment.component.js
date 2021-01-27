@@ -54,6 +54,7 @@ const PaymentComponent = ({
         className="number-selector"
         onChange={(e) => setPaymentInfo({ ...paymentInfo, month: parseInt(e.target.value, 10) })}
       >
+        <option value="" selected disabled hidden>Elija un mes</option>
         {
           months.map((value) => <option key={value} value={value}>{value}</option>)
         }
@@ -63,6 +64,7 @@ const PaymentComponent = ({
         className="number-selector"
         onChange={(e) => setPaymentInfo({ ...paymentInfo, year: parseInt(e.target.value, 10) })}
       >
+        <option value="" selected disabled hidden>Elija un año</option>
         {
           years.map((value) => <option key={value} value={value}>{value}</option>)
         }
