@@ -38,6 +38,7 @@ router.post('/reservation', async (req, res) => {
       noHabDoble: responseData.rooms.double,
       noHabMatrimonial: responseData.rooms.master,
       noHabSuite: responseData.rooms.suite,
+      idReservacion: responseData.reservation,
     };
 
     fetch(`${apiGatewayUrl}/api/rooms/save`, {
