@@ -10,7 +10,7 @@ router.post('/payment', (req, res) => {
   const { body } = req;
 
   const finalData = {
-    AccountCompanyId: 40, // HARD-CODING 40 BECAUSE ITS THE RESERVATION ACCOUNT ID
+    AccountCompanyId: 36, // HARD-CODING 36 BECAUSE ITS THE RESERVATION ACCOUNT ID
     Amount: body.amount,
     CardNumber: body.number,
     Cvv: body.cvv,
